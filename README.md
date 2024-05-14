@@ -1,5 +1,5 @@
 # 330-Back-End-Final-Project
-
+README
 
 Simple Recipe API:
 
@@ -66,3 +66,4 @@ Proposed Ideal Timeline:
             Prepare Postman collection for API demonstration.
 
     Week 10: Finalize project presentation and demo preparation.
+
