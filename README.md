@@ -1,5 +1,10 @@
 # 330-Back-End-Final-Project
+
 README
+
+Status Update
+
+I have written a lot of code so far and i have a lot of bugs and things to sort out. I am having issues getting my DB up and running. I have spent several hours trouble shooting it to no avail. I still need to write Unit tests for all of my code which should help with the debugging issues and get my project up and running and fully functional. As of now i still have a lot of work to do but i feel that i have a good base of code to build from.
 
 Simple Recipe API:
 
@@ -11,8 +16,8 @@ The Problem:
     The problem this project seeks to solve is one of recipe organization and accessibility. Every person who has ever picked up a knife or a spatula has delt with the same problem. Not being able to find the recipe they want when they want it. Weather you are an amature chef just trying to make something semi nutricious for yourself on a tuesday night after work, or a top tier cheif working at a fancy resturant we all deal with the same issues. We have recipes scattered across differnt platforms, cookbooks, websites and apps making it challenging to find the spicific recipe you want. Additionally, users may want to discover new recipes based on their dietary prefrences of avaliable ingredients. This recipe management API addresses these Challenges by offering a user-friendly database for organizing and accessing recipes, as well as providing personalized recipe ideas.
 
 Components:
-    
-    Routes: 
+
+    Routes:
 
     Authentication routes: /signup, /login, /logout
     Recipe CRUD routes: /recipes, /recipes/:id, /recipes/search
@@ -42,13 +47,13 @@ Components:
 Meeting Project Requierments:
 
     Authentication and Authorization: Implement signup, login, and logout routes with authentication middleware to protect user data.
-    
+
     CRUD Routes: Develop routes for creating, reading, updating, and deleting recipes.
-    
+
     Indexes: Use indexes for optimizing recipe searches based on title, ingredients, or tags.
-    
+
     Text Search: Implement a search route allowing users to search for recipes by keyword or ingredient.
-    
+
     Testing: Ensure test coverage > 80% by writing unit and integration tests for all routes and middleware.
 
 Proposed Ideal Timeline:
@@ -66,4 +71,3 @@ Proposed Ideal Timeline:
             Prepare Postman collection for API demonstration.
 
     Week 10: Finalize project presentation and demo preparation.
-
