@@ -1,5 +1,5 @@
 //middleware.authorize.js
-
+require("dotenv").config();
 const Recipe = require("../models/recipe");
 
 const authorize = async (req, res, next) => {

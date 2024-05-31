@@ -1,5 +1,5 @@
 //server.js
-
+require("dotenv").config();
 const express = require("express");
 
 const routes = require("./routes");
