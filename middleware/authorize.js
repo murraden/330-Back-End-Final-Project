@@ -7,7 +7,7 @@ const authorize = async (req, res, next) => {
     if (!recipe) {
       return next();
     }
-    if (recipe.author.toString() !== req.user._id.toString()) {
+    if (recipe.author.toString() !== req.user.id) {
       return res.status(403).json({ message: "Unauthorized" });
     }
     req.recipe = recipe;

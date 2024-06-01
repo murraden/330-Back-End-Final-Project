@@ -1,16 +1,23 @@
-//daos.auth.js
-
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   const { username, email, password } = req.body;
   try {
+    const existingUserByEmail = await User.findOne({ email });
+    if (existingUserByEmail) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+
+    const existingUserByUsername = await User.findOne({ username });
+    if (existingUserByUsername) {
+      return res.status(400).json({ message: "Username already exists" });
+    }
     const user = new User({ username, email, password });
     await user.save();
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(200).json({ message: "User registered successfully" });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 

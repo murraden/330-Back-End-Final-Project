@@ -1,5 +1,3 @@
-//auth.test.js
-
 const request = require("supertest");
 const server = require("../server");
 const testUtils = require("../test-utils");
@@ -16,18 +14,52 @@ describe("Auth routes", () => {
     username: "user0",
   };
 
-  it("should signup a user and return a 201", async () => {
+  it("should signup a user and return a 200", async () => {
     const res = await request(server).post("/auth/signup").send(user0);
-    expect(res.status).toBe(201);
+    expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("message");
     const userInDb = await User.findOne({ email: user0.email });
     expect(userInDb).not.toBeNull();
     expect(userInDb.email).toBe(user0.email);
   });
 
-  it("should return 400 if there's an error during registration", async () => {
-    const res = await request(server).post("/auth/signup").send({});
+  it("should return 400 if email already exists", async () => {
+    await new User({
+      username: "bob",
+      email: "bob@mail.com",
+      password: "password",
+    }).save();
+
+    const res = await request(server).post("/auth/signup").send({
+      username: "notbob",
+      email: "bob@mail.com",
+      password: "password",
+    });
+
     expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty("message", "Email already exists");
+  });
+
+  it("should return 400 if username already exists", async () => {
+    await new User({
+      username: "mike",
+      email: "mike@mail.com",
+      password: "password",
+    }).save();
+
+    const res = await request(server).post("/auth/signup").send({
+      username: "mike",
+      email: "notmike@mail.com",
+      password: "password",
+    });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty("message", "Username already exists");
+  });
+
+  it("should return 500 if there's an error during registration", async () => {
+    const res = await request(server).post("/auth/signup").send({});
+    expect(res.status).toBe(500);
     expect(res.body).toHaveProperty("error");
   });
 
