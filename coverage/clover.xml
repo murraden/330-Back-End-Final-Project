@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1717225901454" clover="3.2.0">
-  <project timestamp="1717225901454" name="All files">
+<coverage generated="1717261441919" clover="3.2.0">
+  <project timestamp="1717261441919" name="All files">
     <metrics statements="203" coveredstatements="148" conditionals="40" coveredconditionals="12" methods="21" coveredmethods="15" elements="264" coveredelements="175" complexity="0" loc="203" ncloc="203" packages="5" files="13" classes="13"/>
     <package name="330-Back-End-Final-Project">
       <metrics statements="27" coveredstatements="19" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="5"/>
@@ -61,8 +61,8 @@
         <line num="25" count="1" type="stmt"/>
         <line num="27" count="3" type="stmt"/>
         <line num="31" count="3" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="37" count="3" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
       </file>
       <file name="recipe.js" path="C:\Users\murra\330-Back-End-Final-Project\daos\recipe.js">
         <metrics statements="59" coveredstatements="31" conditionals="20" coveredconditionals="3" methods="6" coveredmethods="4"/>
