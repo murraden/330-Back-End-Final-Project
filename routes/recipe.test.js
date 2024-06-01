@@ -22,7 +22,7 @@ const recipe1 = {
   author: user0,
 };
 
-beforeAll(async () => {
+beforeEach(async () => {
   await testUtils.connectDB();
   await request(server).post("/auth/signup").send(user0);
   const loginRes = await request(server)
@@ -69,6 +69,75 @@ describe("Recipes", () => {
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("title", "Test Recipe");
     expect(res.body).toHaveProperty("author", userId);
+  });
+
+  it("should return 400 if title is missing", async () => {
+    const res = await request(server)
+      .post("/recipe")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        ingredients: "Valid Ingredients",
+        instructions: "Valid Instructions",
+        tags: ["valid", "tags"],
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty(
+      "message",
+      "Bad format: Title is required and should be a string"
+    );
+  });
+
+  it("should return 400 if ingredients are missing", async () => {
+    const res = await request(server)
+      .post("/recipe")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        title: "Valid Title",
+        instructions: "Valid Instructions",
+        tags: ["valid", "tags"],
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty(
+      "message",
+      "Bad format: Ingredients are required and should be a string"
+    );
+  });
+
+  it("should return 400 if instructions are missing", async () => {
+    const res = await request(server)
+      .post("/recipe")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        title: "Valid Title",
+        ingredients: "Valid Ingredients",
+        tags: ["valid", "tags"],
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty(
+      "message",
+      "Bad format: Instructions are required and should be a string"
+    );
+  });
+
+  it("should return 400 if tags are not an array", async () => {
+    const res = await request(server)
+      .post("/recipe")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        title: "Valid Title",
+        ingredients: "Valid Ingredients",
+        instructions: "Valid Instructions",
+        tags: "not an array",
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty(
+      "message",
+      "Bad format: Tags should be an array"
+    );
   });
 
   it("should get all recipes", async () => {
@@ -158,20 +227,14 @@ describe("Recipes", () => {
       password: "123password",
       username: "user1",
     }).save();
-    const user2 = await new User({
-      email: "user2@mail.com",
-      password: "456password",
-      username: "user2",
-    }).save();
     const newRecipe = new Recipe({
       title: "Test Recipe",
       ingredients: "Test Ingredients",
       instructions: "Test Instructions",
       tags: ["test"],
-      author: user1._id,
+      author: user1.id,
     });
     await newRecipe.save();
-    const token = await user2.generateAuthToken();
     const res = await request(server)
       .delete(`/recipe/${newRecipe._id}`)
       .set("Authorization", `Bearer ${token}`);

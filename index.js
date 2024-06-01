@@ -1,5 +1,3 @@
-//index.js
-
 const server = require("./server");
 const mongoose = require("mongoose");
 

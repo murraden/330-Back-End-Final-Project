@@ -1,4 +1,3 @@
-//middleware.authenticate.js
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
@@ -20,7 +19,7 @@ const authenticate = async (req, res, next) => {
     next();
   } catch (err) {
     console.error("Token error:", err);
-    res.status(401).json({ message: "Invalid token" });
+    res.status(500).json({ message: "Invalid token" });
   }
 };
 
