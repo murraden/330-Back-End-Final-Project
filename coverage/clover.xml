@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1717225651347" clover="3.2.0">
-  <project timestamp="1717225651347" name="All files">
-    <metrics statements="208" coveredstatements="155" conditionals="40" coveredconditionals="12" methods="22" coveredmethods="16" elements="270" coveredelements="183" complexity="0" loc="208" ncloc="208" packages="5" files="13" classes="13"/>
+<coverage generated="1717225901454" clover="3.2.0">
+  <project timestamp="1717225901454" name="All files">
+    <metrics statements="203" coveredstatements="148" conditionals="40" coveredconditionals="12" methods="21" coveredmethods="15" elements="264" coveredelements="175" complexity="0" loc="203" ncloc="203" packages="5" files="13" classes="13"/>
     <package name="330-Back-End-Final-Project">
       <metrics statements="27" coveredstatements="19" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="5"/>
       <file name="server.js" path="C:\Users\murra\330-Back-End-Final-Project\server.js">
@@ -139,26 +139,26 @@
       </file>
     </package>
     <package name="330-Back-End-Final-Project.middleware">
-      <metrics statements="33" coveredstatements="21" conditionals="10" coveredconditionals="3" methods="2" coveredmethods="1"/>
+      <metrics statements="33" coveredstatements="19" conditionals="10" coveredconditionals="3" methods="2" coveredmethods="1"/>
       <file name="authenticate.js" path="C:\Users\murra\330-Back-End-Final-Project\middleware\authenticate.js">
-        <metrics statements="18" coveredstatements="17" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <metrics statements="18" coveredstatements="15" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
         <line num="2" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
         <line num="4" count="3" type="stmt"/>
         <line num="6" count="3" type="stmt"/>
-        <line num="7" count="7" type="stmt"/>
-        <line num="8" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="cond" truecount="1" falsecount="1"/>
         <line num="9" count="0" type="stmt"/>
-        <line num="12" count="7" type="stmt"/>
-        <line num="13" count="7" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
         <line num="14" count="6" type="stmt"/>
         <line num="15" count="6" type="stmt"/>
         <line num="16" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="17" count="3" type="stmt"/>
         <line num="19" count="3" type="stmt"/>
         <line num="20" count="3" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
         <line num="27" count="3" type="stmt"/>
       </file>
       <file name="authorize.js" path="C:\Users\murra\330-Back-End-Final-Project\middleware\authorize.js">
@@ -175,13 +175,13 @@
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="24" count="3" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
       </file>
     </package>
     <package name="330-Back-End-Final-Project.models">
-      <metrics statements="27" coveredstatements="24" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+      <metrics statements="22" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="recipe.js" path="C:\Users\murra\330-Back-End-Final-Project\models\recipe.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="3" type="stmt"/>
@@ -191,29 +191,24 @@
         <line num="34" count="3" type="stmt"/>
       </file>
       <file name="user.js" path="C:\Users\murra\330-Back-End-Final-Project\models\user.js">
-        <metrics statements="22" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+        <metrics statements="17" coveredstatements="14" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="3" count="3" type="stmt"/>
         <line num="4" count="3" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="20" count="3" type="stmt"/>
-        <line num="21" count="8" type="cond" truecount="1" falsecount="1"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="24" count="8" type="stmt"/>
-        <line num="25" count="8" type="stmt"/>
-        <line num="26" count="8" type="stmt"/>
-        <line num="27" count="8" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="19" count="8" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
         <line num="33" count="3" type="stmt"/>
-        <line num="34" count="4" type="stmt"/>
-        <line num="35" count="4" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="41" count="3" type="stmt"/>
-        <line num="43" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
       </file>
     </package>
     <package name="330-Back-End-Final-Project.routes">
