@@ -16,8 +16,8 @@ describe("Auth routes", () => {
     username: "user0",
   };
 
-  it("should register a user and return a 201", async () => {
-    const res = await request(server).post("/auth/register").send(user0);
+  it("should signup a user and return a 201", async () => {
+    const res = await request(server).post("/auth/signup").send(user0);
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("message");
     const userInDb = await User.findOne({ email: user0.email });
@@ -26,35 +26,33 @@ describe("Auth routes", () => {
   });
 
   it("should return 400 if there's an error during registration", async () => {
-    const res = await request(server).post("/auth/register").send({});
+    const res = await request(server).post("/auth/signup").send({});
     expect(res.status).toBe(400);
     expect(res.body).toHaveProperty("error");
   });
 
   it("should login a user and return a 200", async () => {
-    await request(server).post("/auth/register").send(user0);
+    await request(server).post("/auth/signup").send(user0);
     const res1 = await request(server).post("/auth/login").send(user0);
     expect(res1.status).toBe(200);
     expect(res1.body).toHaveProperty("token");
   });
 
-  it("should return 400 if there's an error during login", async () => {
-    // Send request with invalid data to trigger an error during login
-    const res = await request(server).post("/auth/login").send({}); // Empty request body to trigger error
+  it("should return 401 if there's an error during login", async () => {
+    const res = await request(server).post("/auth/login").send({});
 
-    // Assertion
-    expect(res.status).toBe(400);
-    expect(res.body).toHaveProperty("message", "Invalid email or password");
+    expect(res.status).toBe(401);
+    expect(res.body).toHaveProperty("message", "Invalid credentials");
   });
 
-  it("should return a 400 for invalid password", async () => {
-    await request(server).post("/auth/register").send(user0);
+  it("should return a 401 for invalid password", async () => {
+    await request(server).post("/auth/signup").send(user0);
     const res1 = await request(server).post("/auth/login").send({
       email: "user0@mail.com",
       password: "notmatching",
       username: "user0",
     });
-    expect(res1.status).toBe(400);
-    expect(res1.body).toHaveProperty("message", "Invalid email or password");
+    expect(res1.status).toBe(401);
+    expect(res1.body).toHaveProperty("message", "Invalid credentials");
   });
 });

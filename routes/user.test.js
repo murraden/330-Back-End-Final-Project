@@ -3,7 +3,7 @@
 const request = require("supertest");
 const server = require("../server");
 const testUtils = require("../test-utils");
-const user = require("../models/user");
+const User = require("../models/user");
 
 let token;
 
@@ -32,7 +32,7 @@ afterEach(testUtils.clearDB);
 describe("User", () => {
   it("should get user profile", async () => {
     const res = await request(server)
-      .get("/profile")
+      .get("/user/profile")
       .set("Authorization", `Bearer ${token}`);
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("username", "user0");
