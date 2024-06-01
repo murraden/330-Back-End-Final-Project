@@ -1,3 +1,5 @@
+//routes.user.js
+
 const express = require("express");
 const { getUserProfile } = require("../daos/user");
 const authenticate = require("../middleware/authenticate");

@@ -1,11 +1,11 @@
 //.daos.recipe.js
 
-const recipe = require("../models/recipe");
+const Recipe = require("../models/recipe");
 
 const createRecipe = async (req, res) => {
   const { title, ingredients, instructions, tags } = req.body;
   try {
-    const recipe = new recipe({
+    const recipe = new Recipe({
       title,
       ingredients,
       instructions,
@@ -21,8 +21,8 @@ const createRecipe = async (req, res) => {
 
 const getRecipes = async (req, res) => {
   try {
-    const recipes = await recipe.find().populate("author", "username");
-    res.json(recipes);
+    const recipes = await Recipe.find().populate("author", "username");
+    res.status(200).json(recipes);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -30,20 +30,24 @@ const getRecipes = async (req, res) => {
 
 const getRecipeById = async (req, res) => {
   try {
-    const recipe = await recipe
-      .findById(req.params.id)
-      .populate("author", "username");
-    if (!recipe) return res.status(404).json({ message: "Recipe not found" });
+    const recipeId = req.params.id;
+    console.log(`Getting recipe by ID: ${recipeId}`);
+    const recipe = await Recipe.findById(recipeId).exec();
+    if (!recipe) {
+      console.log(`Recipe not found: ${recipeId}`);
+      return res.status(404).json({ message: "Recipe not found" });
+    }
     res.json(recipe);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
 const updateRecipe = async (req, res) => {
   const { title, ingredients, instructions, tags } = req.body;
   try {
-    const recipe = await recipe.findById(req.params.id);
+    const recipe = await Recipe.findById(req.params.id);
     if (!recipe) return res.status(404).json({ message: "Recipe not found" });
     if (recipe.author.toString() !== req.user.id)
       return res.status(403).json({ message: "Unauthorized" });
@@ -61,7 +65,7 @@ const updateRecipe = async (req, res) => {
 
 const deleteRecipe = async (req, res) => {
   try {
-    const recipe = await recipe.findById(req.params.id);
+    const recipe = await Recipe.findById(req.params.id);
     if (!recipe) return res.status(404).json({ message: "Recipe not found" });
     if (recipe.author.toString() !== req.user.id)
       return res.status(403).json({ message: "Unauthorized" });
@@ -76,12 +80,18 @@ const deleteRecipe = async (req, res) => {
 const searchRecipes = async (req, res) => {
   try {
     const { query } = req.query;
-    const recipes = await recipe
-      .find({ $text: { $search: query } })
-      .populate("author", "username");
+    console.log(`Searching recipes with query: ${query}`);
+    const recipes = await Recipe.find({ $text: { $search: query } })
+      .populate("author", "username")
+      .exec();
+    if (recipes.length === 0) {
+      console.log(`No recipes found with query: ${query}`);
+      return res.status(404).json({ message: "No recipes found" });
+    }
     res.json(recipes);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
