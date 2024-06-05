@@ -2,6 +2,18 @@
 
 README
 
+Submission Status Upadte -
+
+At this point my vision is more or less completed. Everything that i had invisioned origionaly when thinking up this project has been completed and is fully functional. I would love to find the time to make a front end for this project and to figure out a few quirks that just didnt make sense to me on the back end. For instance why the \_id of a recipe is forced to be a 24 character string, and why when you search for a \_id that is anything other than a 24 character string the error handler does not function properly and you get a 500 error.
+
+Another thing that i discovered along the way and that made my work very challenging is that data within a test file can be mutated (i think, at least thats my best discription for whatw as happening) while it works its way through the test file. Thats why in my test file and throught my code you will find a LOT of console.log statements, and some tests using global data and other tests using data created within the test. Those were all added while i was trying to debug my tests/code and figure out why it was not functioning as intended. What i found is that for the most part my code was correct and the issue lied within my test file and the created data being passed into each test getting mutated somehow before reaching specific tests. To fix this i had to switch the hook i was using for creating test data. I was origionaly using the beforeAll hook to create my test data, and only after i isolated one of the failing tests and ran it individualy was i able to realize that it did pass, and changed my beforeAll hook to beforeEach, creating new data before each test ran and then my failing tests all passed.
+
+I also struggeled with simple errors and not being able to easily catch those errors. Capitial letters, plurls and non plurals were hidden within my code forcing errors that were not easy to track down. at one point i was importing my Recipe model into one of my dao files as "recipe" and not "Recipe". With that i was able to have a valueable learning moment where i noticed that VScode upon a succesful model import will change the color of the text to the light green/teal color and then use that color throughtout the files.
+
+Perhaps learning and using Type Script would help catch some of those errors along the way and save me some time in the long haul.
+
+All and all with this project i had some very high highs and some very low lows, and i really learned a lot along the way. I am proud of the fully functioning API that i have built and of everything i have learned throught this course. The first few weeks of this course i had it in my mind that i was not going to enjoy back end programing, but by the end of this project i realized that i enjoy it just as much as front end. It is just as challenging and just as rewarding!
+
 Status Update
 
 I have written a lot of code so far and i have a lot of bugs and things to sort out. I am having issues getting my DB up and running. I have spent several hours trouble shooting it to no avail. I still need to write Unit tests for all of my code which should help with the debugging issues and get my project up and running and fully functional. As of now i still have a lot of work to do but i feel that i have a good base of code to build from.
