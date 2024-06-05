@@ -1,0 +1,35 @@
+{
+  "name": "330-back-end-final-project",
+  "version": "1.0.0",
+  "description": "README",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand --coverage --coverageDirectory='coverage'",
+    "start": "node index.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "preset": "@shelf/jest-mongodb",
+    "watchPathIgnorePatterns": [
+      "globalConfig"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.0"
+  },
+  "devDependencies": {
+    "@shelf/jest-mongodb": "^4.1.7",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
