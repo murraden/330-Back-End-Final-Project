@@ -214,6 +214,8 @@ describe("Recipes", () => {
       author: userId,
     });
     await newRecipe.save();
+    console.log("dog food id", newRecipe._id);
+    console.log("dog food recipe", newRecipe);
     const res = await request(server)
       .delete(`/recipe/${newRecipe._id}`)
       .set("Authorization", `Bearer ${token}`);
@@ -243,18 +245,26 @@ describe("Recipes", () => {
   });
 
   it("should search for recipes", async () => {
-    const newRecipe = new Recipe({
+    const newSpecialRecipe = new Recipe({
       title: "Special Test Recipe",
       ingredients: "Special Test Ingredients",
       instructions: "Special Test Instructions",
       tags: ["special"],
       author: userId,
     });
+    await newSpecialRecipe.save();
+    const newRecipe = new Recipe({
+      title: "Test Recipe",
+      ingredients: "Test Ingredients",
+      instructions: "Test Instructions",
+      tags: ["test"],
+      author: userId,
+    });
     await newRecipe.save();
     const res1 = await request(server).get("/recipe/search?query=Special");
     expect(res1.status).toBe(200);
     expect(res1.body).toBeInstanceOf(Array);
-    expect(res1.body.length).toBeGreaterThan(0);
+    expect(res1.body.length).toBe(1);
     const res2 = await request(server).get("/recipe/search?query=InvalidQuery");
     expect(res2.status).toBe(404);
     expect(res2.body).toEqual({ message: "No recipes found" });
